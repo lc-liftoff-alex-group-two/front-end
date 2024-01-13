@@ -1,0 +1,40 @@
+body {
+  background-color: rgb(124, 207, 142);
+
+}
+.navbar-brand {
+    font-size: 2rem;
+    color: aqua;
+    
+  }
+  .Navbar.Brand:hover {
+    color: magenta;
+  }
+  .Nav.Link {
+    margin-right: 10px;
+    margin-left: 10px;
+    color: black;
+    text-transform: uppercase;
+  }
+  .Nav.Link:hover {
+    color: magenta;
+  }
+  .search{
+    height: 40px;
+    width: 80%;
+    border-radius: 60px;
+    outline: none;
+    margin-right: -35px;
+    border: 2px solid gold;
+  }
+  .Button{
+    height: 40px;
+    width: 40%;
+    outline: none;
+    border: none;
+    background: gold;
+    color: white;
+    border-radius: 60px;
+    font-weight: 700;
+  }
+
