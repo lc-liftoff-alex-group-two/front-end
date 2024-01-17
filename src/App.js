@@ -9,10 +9,10 @@ function App() {
   return (
     <div className="App">
       
-      <h1> Hello, this is my first React App</h1>
-      <Button>This is Button</Button>
+      <h1></h1>
+    
       
-        <h1> I am learning React</h1>
+        <h1></h1>
         
     </div>
     

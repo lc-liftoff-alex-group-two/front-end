@@ -1,23 +1,24 @@
 body {
-  background-color: rgb(124, 207, 142);
+  background-color: whitesmoke;
 
 }
 .navbar-brand {
     font-size: 2rem;
-    color: aqua;
+    font-family: 'Oleo Script Swash Caps', cursive;
+    color: black;
     
   }
-  .Navbar.Brand:hover {
-    color: magenta;
+  .navbar-brand:hover {
+    color: green;
   }
-  .Nav.Link {
+  .nav-link {
     margin-right: 10px;
     margin-left: 10px;
     color: black;
     text-transform: uppercase;
   }
-  .Nav.Link:hover {
-    color: magenta;
+  .nav-link:hover {
+    color: green;
   }
   .search{
     height: 40px;
@@ -25,14 +26,14 @@ body {
     border-radius: 60px;
     outline: none;
     margin-right: -35px;
-    border: 2px solid gold;
+    border: 2px solid green;
   }
-  .Button{
+  .btn{
     height: 40px;
     width: 40%;
     outline: none;
     border: none;
-    background: gold;
+    background: green;
     color: white;
     border-radius: 60px;
     font-weight: 700;
