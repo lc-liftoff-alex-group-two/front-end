@@ -17,5 +17,5 @@
 }
 
 .custom-slider img:hover {
-  transform: scale(1.05); /* Scale up the image on hover */
+  transform: scale(1.05); /* Scaled up the image on hover */
 }

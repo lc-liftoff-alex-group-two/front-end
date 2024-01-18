@@ -50,7 +50,7 @@ const HomePage = () => {
             }}
           >
             <h1>Be the change.</h1>
-            <p>Your inspiring message goes here.</p>
+            <p></p>
           </div>
         </div>
   
