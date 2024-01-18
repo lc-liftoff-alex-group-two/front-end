@@ -4,7 +4,7 @@ const OurMission = () => {
   return (
     <div>
       <h2>Our Mission</h2>
-      {/* Add your mission content here */}
+      {/* mission content here */}
     </div>
   );
 };

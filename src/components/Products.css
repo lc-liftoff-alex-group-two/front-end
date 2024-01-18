@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 1050px; /* maximum width for the centered container */
+    max-width: 1085px; /* maximum width for the centered container */
     margin: 0 auto; /* Centered the container */
   }
   

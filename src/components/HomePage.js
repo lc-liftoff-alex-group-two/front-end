@@ -44,8 +44,8 @@ const HomePage = () => {
               top: '50%',
               right: '0',
               transform: 'translateY(-50%)',
-              color: '#fff', // text color
-              textAlign: 'right', // Align text to the right
+              color: '#fff', 
+              textAlign: 'right', 
               padding: '70px',
             }}
           >
