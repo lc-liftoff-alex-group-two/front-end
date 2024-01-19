@@ -11,7 +11,9 @@ const ProductCard = ({ product }) => {
 
   const handleBuyClick = () => {
     // buy logic here
-    console.log(`Buy ${product.name}`);
+    // console.log(`Buy ${product.name}`);
+    // Redirect to the product's company website
+  window.location.href = product.companyWebsite;
   };
 
   return (
