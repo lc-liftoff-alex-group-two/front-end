@@ -1,0 +1,21 @@
+.custom-slider .slick-prev,
+.custom-slider .slick-next {
+  background-color: whitesmoke;
+}
+
+/* styling of the buttons */
+.custom-slider .slick-prev:before,
+.custom-slider .slick-next:before {
+  color: black; /* Button arrow color */
+}
+
+/* Style of images in containers */
+.custom-slider img {
+  border-radius: 8px; /* Added border-radius for rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added a subtle box shadow */
+  transition: transform 0.3s ease-in-out; /* Added a smooth hover effect */
+}
+
+.custom-slider img:hover {
+  transform: scale(1.05); /* Scaled up the image on hover */
+}

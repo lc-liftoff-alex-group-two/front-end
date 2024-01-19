@@ -3,26 +3,25 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Routes from './routes/Routes';
 import NavScrollExample from './components/NavBar';
-import './components/NavBar.css';
-
+import { BrowserRouter as Router } from 'react-router-dom'; 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 import reportWebVitals from './reportWebVitals';
-
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-     <div>
-      <App />
-      <NavScrollExample />
-    </div>
-  
-  </React.StrictMode>
+    <Router>
+      <div>
+        <App />
+        <NavScrollExample />
+        <Routes />
+      </div>
+    </Router>
+  </React.StrictMode>,
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
