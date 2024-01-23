@@ -1,0 +1,37 @@
+.our-mission {
+    text-align: center;
+  }
+  .heading-primary {
+    font-size: 30px; 
+    margin-top: 20px;
+    color: #333; 
+  }
+
+  
+  .contributors {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .contributor {
+    text-align: center;
+  }
+  
+  .contributor img {
+    width: 100px; 
+  border-radius: 50%; /* Creates a circular shape */
+  margin-bottom: 10px;
+  border: 2px solid black; 
+  }
+  .mission-text-container {
+    
+    max-width: 800px;
+    margin: 0 auto; /* Center the container */
+  }
+  .contributors-container {
+    
+    max-width: 800px; /* Adjust the maximum width as needed */
+    margin: 20px auto; /* Add margin for spacing */
+  }

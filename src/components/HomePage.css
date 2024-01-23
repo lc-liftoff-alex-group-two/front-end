@@ -1,4 +1,10 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&family=Zeyada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap');
+
 .custom-slider .slick-prev,
+
+
 .custom-slider .slick-next {
   background-color: whitesmoke;
 }
@@ -18,4 +24,22 @@
 
 .custom-slider img:hover {
   transform: scale(1.05); /* Scaled up the image on hover */
+}
+.custom-slider {
+  margin-top: 20px; /* margin to separate the carousel from other content */
+  padding: 10px;
+}
+
+/* Style for the product name in the carousel */
+.custom-slider p {
+  font-family: 'Julius Sans One'; 
+  margin-top: 10px; /* Adjust top margin for the product name */
+  font-size: 14px; /* Adjust font size for the product name */
+  font-weight: bold;
+}
+.featured-products-heading {
+  font-family: 'Libre Barcode 128 Text';
+  padding: 10px;
+  font-size: 45px;
+  /* font-weight: bold; */
 }

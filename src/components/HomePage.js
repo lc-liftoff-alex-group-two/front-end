@@ -18,7 +18,7 @@ const HomePage = () => {
       { id: 2, name: 'Purpose Jewelry Daisy Earrings', image: '/images/DaisyEarrings.jpg' },
       { id: 3, name: 'Jewel Garden', image: '/images/JewelGarden.jpg' },
       { id: 4, name: 'Out of Print Read Your Socks Off Socks', image: '/images/ReadYourSocksOff.jpg' },
-      // Add more products as needed
+      
     ];
   
     const settings = {
@@ -56,7 +56,7 @@ const HomePage = () => {
   
         {/* Product Carousel */}
         <Container>
-        <h2>Featured Products</h2>
+        <h2 className="featured-products-heading">Featured Products</h2>
         <Slider {...settings} className="custom-slider">
           {products.map((product) => (
             <div key={product.id}>

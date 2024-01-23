@@ -16,6 +16,7 @@ const RoutesComponent = () => {
         <Route path="/favorites" element={<FavoritesList />} />
         <Route path="/products" element={<Products />} />
         <Route path="/ourmission" element={<OurMission />} />
+        <Route path="/" element={<HomePage />} />
       </Routes>
     </div>
   );
