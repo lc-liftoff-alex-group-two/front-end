@@ -6,6 +6,7 @@ import HomePage from '../components/HomePage';
 import FavoritesList from '../components/FavoritesList';
 import Products from '../components/Products';
 import OurMission from '../components/OurMission';
+import ProductPage from '../components/ProductPage';
 
 const RoutesComponent = () => {
   return (
@@ -16,6 +17,8 @@ const RoutesComponent = () => {
         <Route path="/favorites" element={<FavoritesList />} />
         <Route path="/products" element={<Products />} />
         <Route path="/ourmission" element={<OurMission />} />
+        <Route path="/products/:productId" element={<ProductPage />} /> {/* New route for individual product pages */}
+        <Route path="/" element={<HomePage />} />
       </Routes>
     </div>
   );
