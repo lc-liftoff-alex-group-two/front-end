@@ -16,11 +16,11 @@ to organizations and companies that aim to make the world a better place. We are
         <h3>Our Contributors</h3>
         <div className="contributors">
           <div className="contributor">
-            <img src="/images/ContributorA.jpg" alt="Contributor 1" />
+            <img src="/images/ContributorB.jpg" alt="Contributor 1" />
             <p>Haripriya</p>
           </div>
           <div className="contributor">
-            <img src="/images/ContributorB.jpg" alt="Contributor 2" />
+            <img src="/images/ContributorA.jpg" alt="Contributor 2" />
             <p>Samantha</p>
           </div>
           <div className="contributor">

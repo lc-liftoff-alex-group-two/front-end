@@ -43,3 +43,7 @@
   font-size: 45px;
   /* font-weight: bold; */
 }
+.product-name {
+  margin-top: 10px; /* Adjust as needed */
+  text-align: center;
+}

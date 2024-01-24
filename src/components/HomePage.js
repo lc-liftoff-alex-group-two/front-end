@@ -60,8 +60,10 @@ const HomePage = () => {
         <Slider {...settings} className="custom-slider">
           {products.map((product) => (
             <div key={product.id}>
-              <img src={product.image} alt={product.name} style={{ width: '100%' }} />
-              <p>{product.name}</p>
+              <Link to={`/products/${product.id}`}>
+                <img src={product.image} alt={product.name} style={{ width: '100%' }} />
+              </Link>
+              <p className="product-name">{product.name}</p>
             </div>
           ))}
         </Slider>
@@ -70,5 +72,4 @@ const HomePage = () => {
   );
 };
 
-  
-  export default HomePage;
+export default HomePage;
