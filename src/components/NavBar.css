@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap');
+
 body {
   background-color: whitesmoke;
 
@@ -16,6 +18,8 @@ body {
     margin-left: 10px;
     color: black;
     text-transform: uppercase;
+    font-family: 'Julius Sans One';
+    /* font-weight: bold; */
   }
   .nav-link:hover {
     color: green;
@@ -27,6 +31,7 @@ body {
     outline: none;
     margin-right: -35px;
     border: 2px solid green;
+    
   }
   .btn{
     height: 40px;
@@ -37,5 +42,6 @@ body {
     color: white;
     border-radius: 60px;
     font-weight: 700;
+    
   }
 

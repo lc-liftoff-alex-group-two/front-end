@@ -18,7 +18,7 @@ const HomePage = () => {
       { id: 2, name: 'Purpose Jewelry Daisy Earrings', image: '/images/DaisyEarrings.jpg' },
       { id: 3, name: 'Jewel Garden', image: '/images/JewelGarden.jpg' },
       { id: 4, name: 'Out of Print Read Your Socks Off Socks', image: '/images/ReadYourSocksOff.jpg' },
-      // Add more products as needed
+      
     ];
   
     const settings = {
@@ -44,8 +44,8 @@ const HomePage = () => {
               top: '50%',
               right: '0',
               transform: 'translateY(-50%)',
-              color: '#fff', // text color
-              textAlign: 'right', // Align text to the right
+              color: '#fff', 
+              textAlign: 'right', 
               padding: '70px',
             }}
           >
@@ -56,12 +56,14 @@ const HomePage = () => {
   
         {/* Product Carousel */}
         <Container>
-        <h2>Featured Products</h2>
+        <h2 className="featured-products-heading">Featured Products</h2>
         <Slider {...settings} className="custom-slider">
           {products.map((product) => (
             <div key={product.id}>
-              <img src={product.image} alt={product.name} style={{ width: '100%' }} />
-              <p>{product.name}</p>
+              <Link to={`/products/${product.id}`}>
+                <img src={product.image} alt={product.name} style={{ width: '100%' }} />
+              </Link>
+              <p className="product-name">{product.name}</p>
             </div>
           ))}
         </Slider>
@@ -70,5 +72,4 @@ const HomePage = () => {
   );
 };
 
-  
-  export default HomePage;
+export default HomePage;
