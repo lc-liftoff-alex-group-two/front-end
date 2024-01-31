@@ -20,6 +20,7 @@ function NavScrollExample() {
             <Nav.Link as={Link} to="/ourmission">OUR MISSION</Nav.Link>
             <Nav.Link as={Link} to="/contact">CONTACT US</Nav.Link>
             <Nav.Link as={Link} to="/products">PRODUCTS</Nav.Link>
+            <Nav.Link as={Link} to="/productadminpage">ADMIN</Nav.Link>
           </Nav>
           <Nav className="ml-auto">
           <Nav.Link as={Link} to="/favorites">FAVORITES LIST <BagHeartFill /></Nav.Link>
