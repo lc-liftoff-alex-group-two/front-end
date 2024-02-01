@@ -1,25 +1,64 @@
 import React, { useState } from "react";
 import "./Register.css";
+import { useNavigate } from "react-router-dom";
 const RegisterForm = () => {
-  const [user, setFormData] = useState({
+  const navigate = useNavigate();
+  const [user, setUserData] = useState({
+    id: "",
     userName: "",
     email: "",
     phone: "",
     password: "",
-    confirmPassword: "",
   });
 
   const [errors, setErrors] = useState({});
-
   const handleChange = (e) => {
-    setFormData({
+    const { name, value } = e.target;
+
+    // Basic validation
+    let error = "";
+    if (name === "userName" && value.length < 3) {
+      error = "User name must be at least 3 characters long";
+    } else if (name === "email" && !/\S+@\S+\.\S+/.test(value)) {
+      error = "Invalid email address";
+    } else if (name === "phone" && !/^\d{10}$/.test(value)) {
+      error = "Phone number must be 10 digits long";
+    } else if (name === "password" && value.length < 6) {
+      error = "Password must be at least 6 characters long";
+    } else if (name === "confirmpassword" && value !== user.password) {
+      error = "Passwords do not match";
+    }
+
+    setErrors({
+      ...errors,
+      [name]: error,
+    });
+
+    setUserData({
       ...user,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // Additional validation for required fields
+    const requiredFields = ["userName", "email", "phone", "password"];
+    const newErrors = {};
+    let hasErrors = false;
+
+    requiredFields.forEach((field) => {
+      if (!user[field]) {
+        newErrors[field] = "This field is required";
+        hasErrors = true;
+      }
+    });
+
+    if (hasErrors) {
+      setErrors(newErrors);
+      return;
+    }
+
     fetch("http://localhost:8080/user/register", {
       method: "POST",
       headers: {
@@ -28,10 +67,19 @@ const RegisterForm = () => {
       body: JSON.stringify(user),
     })
       .then((response) => response.json())
-      .then((data) => console.log("User created:", data.user))
+      .then((user) => {
+        console.log("User created:", user);
+
+        if (user) {
+          setUserData(user); // Set user state with the received user information
+          navigate("/login"); // Set redirect state to true
+        } else {
+          console.log("Error creating user:", user);
+          // Handle error scenarios or display a message to the user
+        }
+      })
       .catch((error) => console.error("Error creating user:", error));
   };
-
   return (
     <body id="register_body">
       <div className="register_container">
@@ -47,15 +95,11 @@ const RegisterForm = () => {
               value={user.userName}
               onChange={handleChange}
               autoFocus
-              placeholder="Enter user name"
+              placeholder="User name"
             />
           </div>
           {errors.userName && (
-            <div style={{ color: "red" }}>
-              {errors.userName.map((error, index) => (
-                <div key={index}>{error.defaultMessage}</div>
-              ))}
-            </div>
+            <div style={{ color: "red" }}>{errors.userName}</div>
           )}
 
           <div className="form__input-group">
@@ -67,17 +111,10 @@ const RegisterForm = () => {
               value={user.email}
               onChange={handleChange}
               autoFocus
-              placeholder="Enter email id"
+              placeholder="Email id"
             />
           </div>
-          {errors.email && (
-            <div style={{ color: "red" }}>
-              {errors.email.map((error, index) => (
-                <div key={index}>{error.defaultMessage}</div>
-              ))}
-            </div>
-          )}
-
+          {errors.email && <div style={{ color: "red" }}>{errors.email}</div>}
           <div className="form__input-group">
             <input
               type="number"
@@ -87,16 +124,10 @@ const RegisterForm = () => {
               value={user.phone}
               onChange={handleChange}
               autoFocus
-              placeholder="Enter phone number"
+              placeholder="Phone number"
             />
           </div>
-          {errors.phone && (
-            <div style={{ color: "red" }}>
-              {errors.phone.map((error, index) => (
-                <div key={index}>{error.defaultMessage}</div>
-              ))}
-            </div>
-          )}
+          {errors.phone && <div style={{ color: "red" }}>{errors.phone}</div>}
 
           <div className="form__input-group">
             <input
@@ -107,35 +138,25 @@ const RegisterForm = () => {
               value={user.password}
               onChange={handleChange}
               autoFocus
-              placeholder="Enter password"
+              placeholder="Password"
             />
           </div>
           {errors.password && (
-            <div style={{ color: "red" }}>
-              {errors.password.map((error, index) => (
-                <div key={index}>{error.defaultMessage}</div>
-              ))}
-            </div>
+            <div style={{ color: "red" }}>{errors.password}</div>
           )}
-
           <div className="form__input-group">
             <input
               type="password"
               className="form__input"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={user.confirmPassword}
+              id="confirmpassword"
+              name="confirmpassword"
               onChange={handleChange}
               autoFocus
-              placeholder="Confirm password"
+              placeholder="Confirm Password"
             />
           </div>
-          {errors.confirmPassword && (
-            <div style={{ color: "red" }}>
-              {errors.confirmPassword.map((error, index) => (
-                <div key={index}>{error.defaultMessage}</div>
-              ))}
-            </div>
+          {errors.confirmpassword && (
+            <div style={{ color: "red" }}>{errors.confirmpassword}</div>
           )}
           <button className="form__button" type="submit">
             Continue
