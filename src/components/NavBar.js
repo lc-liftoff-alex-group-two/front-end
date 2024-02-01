@@ -15,6 +15,7 @@ function NavScrollExample() {
         <Navbar.Brand href="#">GiveWise</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
+
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}
@@ -35,6 +36,7 @@ function NavScrollExample() {
             <Nav.Link as={Link} to="/register">
               REGISTER
             </Nav.Link>
+
           </Nav>
           <Nav className="ml-auto">
             <Nav.Link as={Link} to="/favorites">
