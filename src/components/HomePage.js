@@ -20,7 +20,19 @@ const HomePage = () => {
       { id: 4, name: 'Out of Print Read Your Socks Off Socks', image: '/images/ReadYourSocksOff.jpg' },
       
     ];
-  
+
+    const brands = [
+      { id: 1, name: '', image: '/images/LastTote.jpeg' },
+      { id: 2, name: '', image: '/images/LogoPurpose.jpeg' },
+      { id: 3, name: '', image: '/images/LogoUncommonGoods.jpeg' },
+      { id: 4, name: '', image: '/images/LogoSonoma.jpeg' },
+      { id: 5, name: '', image: '/images/LogoLulasGarden.jpeg' },
+      { id: 6, name: '', image: '/images/LogoFeed.jpeg' },
+      { id: 7, name: '', image: '/images/LogoThistleFarm.jpeg' },
+      // Add more brands as needed
+    ];
+
+  /*Product Carousel settings*/
     const settings = {
       dots: true,
       infinite: true,
@@ -28,6 +40,14 @@ const HomePage = () => {
       slidesToShow: 3,
       slidesToScroll: 1,
     };
+    const brandCarouselSettings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+    };
+  
   
     return (
       <div>
@@ -53,10 +73,11 @@ const HomePage = () => {
             <p></p>
           </div>
         </div>
-  
+
+        
         {/* Product Carousel */}
         <Container>
-        <h2 className="featured-products-heading">Featured Products</h2>
+        <h2 className="featured-products-heading"></h2>
         <Slider {...settings} className="custom-slider">
           {products.map((product) => (
             <div key={product.id}>
@@ -68,6 +89,69 @@ const HomePage = () => {
           ))}
         </Slider>
       </Container>
+
+      {/* Second Banner Image with Text Overlay */}
+      <div style={{ position: 'relative' }}>
+        <img
+          src="/images/BANNERZ.jpeg"
+          alt="Another Banner Image"
+          style={{ width: '100%', maxHeight: '800px', objectFit: 'cover' }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            color: '#fff',
+            textAlign: 'center',
+            padding: '70px',
+          }}
+        >
+          <h1></h1>
+          <p></p>
+        </div>
+      </div>
+      {/* Brands Carousel */}
+    <Container>
+        <h2 className="brands-heading"></h2>
+        <Slider {...brandCarouselSettings} className="custom-slider">
+          {brands.map((brand) => (
+            <div key={brand.id}>
+              {/* You can link to a specific brand page if needed */}
+              <img src={brand.image} alt={brand.name} style={{ width: '100%' }} />
+              <p className="brand-name">{brand.name}</p>
+            </div>
+          ))}
+        </Slider>
+      </Container>
+
+      {/* Third Banner Image with Text Overlay */}
+      <div style={{ position: 'relative' }}>
+        <img
+          src="/images/BANNER3.jpg"
+          alt="Another Banner Image"
+          style={{ width: '100%', maxHeight: '650px', objectFit: 'cover' }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '60%',
+            transform: 'translate(-50%, -50%)',
+            color: '#fff',
+            textAlign: 'center',
+            padding: '70px',
+          }}
+        >
+          <h1>What do we do?</h1>
+          <p>Explore our mission and discover how your purchases make a positive impact.</p>
+        </div>
+      </div>
+      
+  
+
+    
     </div>
   );
 };
