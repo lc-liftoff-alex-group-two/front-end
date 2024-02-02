@@ -8,8 +8,9 @@ import NavScrollExample from './components/NavBar';
 import { BrowserRouter as Router } from 'react-router-dom'; 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
+import Footer from './components/Footer';
 import reportWebVitals from './reportWebVitals';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,7 @@ root.render(
         <App />
         <NavScrollExample />
         <Routes />
+        <Footer />
       </div>
     </Router>
   </React.StrictMode>,
