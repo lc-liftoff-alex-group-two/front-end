@@ -62,7 +62,7 @@ const ProductForm = ({ onAddProduct }) => {
   
           if (product) {
             onAddProduct(product); 
-            navigate("/productpage")
+            navigate("/products")
           } else {
             console.log("Error Adding product:", product);
             
