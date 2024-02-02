@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
+import './ContactUs.css';
 
 const ContactUs = () => {
     const [formData, setFormData] = useState({
@@ -36,7 +37,7 @@ const ContactUs = () => {
     return (
       <div>
       <div className="text-center">
-        <h2>Contact Us</h2>
+        <h2 className="contact-us-heading">Contact Us</h2>
         <p>If you have any questions or inquiries, please feel free to reach out to us!</p>
       </div>
 

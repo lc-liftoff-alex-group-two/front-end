@@ -6,6 +6,9 @@
     margin-top: 20px;
     color: #333; 
   }
+  .heading-quote {
+    font-style: italic;
+  }
 
   
   .contributors {

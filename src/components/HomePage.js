@@ -31,6 +31,7 @@ const HomePage = () => {
       { id: 7, name: '', image: '/images/LogoThistleFarm.jpeg' },
       { id: 8, name: '', image: '/images/LogoConsciousStep.jpeg' },
       { id: 9, name: '', image: '/images/LogoPotteryPurpose.jpeg' },
+      { id: 10, name: '', image: '/images/LogoPatagonia.jpeg' },
       // Add more brands as needed
     ];
 
@@ -133,9 +134,9 @@ const HomePage = () => {
       {/* Third Banner Image with Text Overlay */}
       <div style={{ position: 'relative' }}>
         <img
-          src="/images/BANNERZ.jpeg"
+          src="/images/help2.png"
           alt="Another Banner Image"
-          style={{ width: '100%', maxHeight: '800px', objectFit: 'cover' }}
+          style={{ width: '100%', maxHeight: '1100px', objectFit: 'cover' }}
         />
         <div
           style={{

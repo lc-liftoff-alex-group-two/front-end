@@ -11,7 +11,7 @@ const OurMission = () => {
           <img src="/images/OurMissionTest.jpg" alt="Centered Image" className="centered-image" />
         </div>
         <p></p>
-        <h3>“Be the change you want to see in the world.”
+        <h3 className="heading-quote">“Be the change you want to see in the world.”
 ― Mahatma Gandhi </h3>
     <div className="mission-text-container">
       <p>Giving creates connection, evokes gratitude, and has been shown to promote health benefits. In a series of studies conducted by Harvard, it was found that people are in fact happier when they spend their money on others vs. themselves.
