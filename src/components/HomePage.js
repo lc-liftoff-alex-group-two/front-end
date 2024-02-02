@@ -29,6 +29,8 @@ const HomePage = () => {
       { id: 5, name: '', image: '/images/LogoLulasGarden.jpeg' },
       { id: 6, name: '', image: '/images/LogoFeed.jpeg' },
       { id: 7, name: '', image: '/images/LogoThistleFarm.jpeg' },
+      { id: 8, name: '', image: '/images/LogoConsciousStep.jpeg' },
+      { id: 9, name: '', image: '/images/LogoPotteryPurpose.jpeg' },
       // Add more brands as needed
     ];
 
@@ -77,7 +79,7 @@ const HomePage = () => {
         
         {/* Product Carousel */}
         <Container>
-        <h2 className="featured-products-heading"></h2>
+        <h2 className="featured-products-heading">Featured Products</h2>
         <Slider {...settings} className="custom-slider">
           {products.map((product) => (
             <div key={product.id}>
@@ -91,6 +93,44 @@ const HomePage = () => {
       </Container>
 
       {/* Second Banner Image with Text Overlay */}
+      <div style={{ position: 'relative' }}>
+        <img
+          src="/images/BannerKidsLast.jpeg"
+          alt="Another Banner Image"
+          style={{ width: '100%', maxHeight: '700px', objectFit: 'cover' }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            top: '20%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            color: '#fff',
+            textAlign: 'center',
+            padding: '70px',
+          }}
+        >
+          <h1 className="second-banner-heading">What do we do?</h1>
+          <p className="second-banner-p">Explore <Link to="/OurMission" style={{ color: 'white' }}>our mission</Link> page and discover how your purchases make a positive impact.</p>
+        </div>
+      </div>
+
+
+      {/* Brands Carousel */}
+    <Container>
+        <h2 className="brands-heading">Our Brands</h2>
+        <Slider {...brandCarouselSettings} className="custom-slider">
+          {brands.map((brand) => (
+            <div key={brand.id}>
+              {/* You can link to a specific brand page if needed */}
+              <img src={brand.image} alt={brand.name} style={{ width: '100%' }} />
+              <p className="brand-name">{brand.name}</p>
+            </div>
+          ))}
+        </Slider>
+      </Container>
+
+      {/* Third Banner Image with Text Overlay */}
       <div style={{ position: 'relative' }}>
         <img
           src="/images/BANNERZ.jpeg"
@@ -110,42 +150,6 @@ const HomePage = () => {
         >
           <h1></h1>
           <p></p>
-        </div>
-      </div>
-      {/* Brands Carousel */}
-    <Container>
-        <h2 className="brands-heading"></h2>
-        <Slider {...brandCarouselSettings} className="custom-slider">
-          {brands.map((brand) => (
-            <div key={brand.id}>
-              {/* You can link to a specific brand page if needed */}
-              <img src={brand.image} alt={brand.name} style={{ width: '100%' }} />
-              <p className="brand-name">{brand.name}</p>
-            </div>
-          ))}
-        </Slider>
-      </Container>
-
-      {/* Third Banner Image with Text Overlay */}
-      <div style={{ position: 'relative' }}>
-        <img
-          src="/images/BANNER3.jpg"
-          alt="Another Banner Image"
-          style={{ width: '100%', maxHeight: '650px', objectFit: 'cover' }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '60%',
-            transform: 'translate(-50%, -50%)',
-            color: '#fff',
-            textAlign: 'center',
-            padding: '70px',
-          }}
-        >
-          <h1>What do we do?</h1>
-          <p>Explore our mission and discover how your purchases make a positive impact.</p>
         </div>
       </div>
       

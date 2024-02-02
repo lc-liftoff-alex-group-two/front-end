@@ -1,5 +1,6 @@
 import React from 'react';
 import './OurMission.css';
+import { Link } from 'react-router-dom';
 
 const OurMission = () => {
   return (
@@ -17,7 +18,7 @@ const OurMission = () => {
 Within today's society we are seeing a rapid growth in consumerism. Our team believes that adding avenues for us to give back through our consumerism will provide increased effort and change.
 Our website was built to create greater access to consumer goods that donate towards important initiatives. We only feature products that give back with every purchase you make. Our hope is that people 
 will choose these types of products over others and join our mission to further aid and develop our communities around the world. Each product is tied
-to organizations and companies that aim to make the world a better place. We are always welcoming new products to our site, so if you have questions or would like to be featured please reach out to us by filling out the "contact us" form on the Contact Us page. Together we can make a difference in the lives of many. </p>
+to organizations and companies that aim to make the world a better place. We are always welcoming new products to our site, so if you have questions or would like to be featured please reach out to us by filling out the <Link to="/contact" style={{ color: 'black' }}>contact us</Link> form. Together we can make a difference in the lives of many. </p>
     
     </div>
     
