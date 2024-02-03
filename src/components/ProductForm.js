@@ -1,55 +1,89 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { BagHeartFill } from 'react-bootstrap-icons';
-import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
+import {useNavigate} from 'react-router-dom'
 
 const ProductForm = ({ onAddProduct }) => {
     const [product, setProduct] = useState({
       id: '',
-      name: '',
-      description: '',
+      productName: '',
+      productDescription: '',
       image: '',
       price: '',
-      website: '',
+      companyebsite: '',
     });
   
+    const [errors, setErrors] = useState({});
+    const navigate = useNavigate();
     const handleChange = (e) => {
       const { name, value } = e.target;
-      setProduct({ ...product, [name]: value });
-    };
   
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      onAddProduct(product);
-      // Clear form fields after submission
+      setErrors({
+        ...errors,
+        [name]: errors,
+      });
+  
       setProduct({
-        id: '',
-        name: '',
-        description: '',
-        image: '',
-        price: '',
-        website: '',
+        ...product,
+        [name]: value,
       });
     };
   
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      // Additional validation for required fields
+      const requiredFields = ["id", "productName", "productDescription", "image", "price", "companyWebsite"];
+      const newErrors = {};
+      let hasErrors = false;
+  
+      requiredFields.forEach((field) => {
+        if (!product[field]) {
+          newErrors[field] = "This field is required";
+          hasErrors = true;
+        }
+      });
+  
+      if (hasErrors) {
+        setErrors(newErrors);
+        return;
+      }
+  
+      fetch("http://localhost:8080/products/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(product)
+      })
+        .then((response) =>{ return response.json()})
+        .then((addedProduct) => {
+          console.log("Product Added:", addedProduct);
+  
+          if (addedProduct) {
+            onAddProduct(addedProduct); // Set user state with the received user information
+            navigate("/productpage") // Set redirect state to true
+          } else {
+            console.log("Error Adding product:", addedProduct);
+            
+           // throw new Error("Error!");
+          }
+        })
+        .catch((error) => console.error("Error adding product:", error));
+    };
     return (
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="id">
           <Form.Label>ID</Form.Label>
-          <Form.Control type="text" name="id" value={product.id} onChange={handleChange} />
+          <Form.Control type="number" name="id" value={product.id} onChange={handleChange} />
         </Form.Group>
         <Form.Group controlId="name">
           <Form.Label>Name</Form.Label>
-          <Form.Control type="text" name="name" value={product.name} onChange={handleChange} />
+          <Form.Control type="text" name="productName" value={product.name} onChange={handleChange} />
         </Form.Group>
         <Form.Group controlId="description">
           <Form.Label>Description</Form.Label>
-          <Form.Control as="textarea" rows={3} name="description" value={product.description} onChange={handleChange} />
+          <Form.Control as="textarea" rows={3} name="productDescription" value={product.description} onChange={handleChange} />
         </Form.Group>
         <Form.Group controlId="image">
           <Form.Label>Image URL</Form.Label>
@@ -57,11 +91,11 @@ const ProductForm = ({ onAddProduct }) => {
         </Form.Group>
         <Form.Group controlId="price">
           <Form.Label>Price</Form.Label>
-          <Form.Control type="text" name="price" value={product.price} onChange={handleChange} />
+          <Form.Control type="number" name="price" value={product.price} onChange={handleChange} />
         </Form.Group>
         <Form.Group controlId="website">
           <Form.Label>Website</Form.Label>
-          <Form.Control type="text" name="website" value={product.website} onChange={handleChange} />
+          <Form.Control type="text" name="companyWebsite" value={product.website} onChange={handleChange} />
         </Form.Group>
         <Button variant="primary" type="submit">
           Add Product

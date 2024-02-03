@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 import ProductForm from './ProductForm';
 
+
 const ProductAdminPage = () => {
     const [products, setProducts] = useState([]);
   
@@ -23,7 +24,7 @@ const ProductAdminPage = () => {
             <Card>
               <Card.Body>
                 <Card.Title>Add Product</Card.Title>
-                <ProductForm onAddProduct={handleAddProduct} />
+                <ProductForm onAddProduct= {handleAddProduct} />
               </Card.Body>
             </Card>
           </Col>

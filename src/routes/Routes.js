@@ -10,6 +10,7 @@ import OurMission from "../components/OurMission";
 import ProductPage from "../components/ProductPage";
 import RegistrationPage from "../components/RegistrationPage";
 import LoginPage from "../components/LoginPage";
+import ProductAdminPage from "../components/ProductAdminPage";
 
 
 const RoutesComponent = () => {
@@ -21,6 +22,7 @@ const RoutesComponent = () => {
         <Route path="/favorites" element={<FavoritesList />} />
         <Route path="/products" element={<Products />} />
         <Route path="/ourmission" element={<OurMission />} />
+        <Route path="/productadminpage" element={<ProductAdminPage />} />
 
         <Route path="/products/:productId" element={<ProductPage />} />{" "}
         {/* New route for individual product pages */}

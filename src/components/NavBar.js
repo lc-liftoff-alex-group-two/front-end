@@ -7,6 +7,8 @@ import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./NavBar.css";
+import  'font-awesome/css/font-awesome.min.css';
+
 
 function NavScrollExample() {
   return (
@@ -36,6 +38,11 @@ function NavScrollExample() {
             <Nav.Link as={Link} to="/register">
               REGISTER
             </Nav.Link>
+            <Nav.Link as={Link} to="/productadminpage">
+              ADMIN
+            </Nav.Link>
+
+
 
           </Nav>
           <Nav className="ml-auto">
