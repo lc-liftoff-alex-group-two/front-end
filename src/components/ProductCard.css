@@ -50,6 +50,12 @@
   cursor: pointer;
   transition: color 0.3s ease; /* Smooth color transition */
 }
+.custom-favorite-button:focus {
+  outline: none; /* Remove the blue highlight on focus */
+}
+.custom-favorite-button:hover {
+  --bs-btn-hover-bg: transparent !important;
+}
 
 .custom-favorite-button.favorite {
   color: rgb(218, 50, 50); /* Color when favorited */
