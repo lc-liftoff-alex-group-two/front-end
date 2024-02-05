@@ -26,8 +26,9 @@
   transform: scale(1.05); /* Scaled up the image on hover */
 }
 .custom-slider {
-  margin-top: 20px; /* margin to separate the carousel from other content */
-  padding: 10px;
+  margin-top: 10px; /* margin to separate the carousel from other content */
+  /* padding: 5px; */
+  margin-bottom: 10px;
 }
 
 /* Style for the product name in the carousel */
@@ -38,11 +39,26 @@
   font-weight: bold;
 }
 .featured-products-heading {
-  font-family: 'Libre Barcode 128 Text';
-  padding: 10px;
-  font-size: 45px;
+  font-family: 'Julius Sans One';
+  padding: 15px;
+  font-size: 16px;
+  text-align: center;
   /* font-weight: bold; */
 }
+.brands-heading {
+  font-family: 'Julius Sans One';
+  padding: 15px;
+  font-size: 16px;
+  text-align: center;
+}
+.second-banner-heading {
+  font-family: 'Julius Sans One';
+  font-size: 40px;
+  font-weight: bold;
+}
+/* .second-banner-p {
+  font-size: 20px;
+} */
 .product-name {
   margin-top: 10px; /* Adjust as needed */
   text-align: center;

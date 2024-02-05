@@ -1,8 +1,25 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import ProductCard from './ProductCard';
 import './Products.css';
 
 const Products = () => {
+ 
+    // Initial state to manage favorites
+    const [favorites, setFavorites] = useState([]);
+  
+    const toggleFavorite = (productId) => {
+      // Check if the product is already in favorites
+      const isFavorite = favorites.includes(productId);
+  
+      if (isFavorite) {
+        // If already a favorite, remove it
+        setFavorites(favorites.filter((id) => id !== productId));
+      } else {
+        // If not a favorite, add it
+        setFavorites([...favorites, productId]);
+      }
+    };
   
   const products = [
     {
@@ -170,14 +187,19 @@ const Products = () => {
 
   return (
     <div>
-    <h2>Products</h2>
-    <div className="product-container">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+      <h2 className="products-heading-text">Products</h2>
+      <div className="product-container">
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            isFavorite={favorites.includes(product.id)}
+            toggleFavorite={toggleFavorite}
+          />
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default Products;
