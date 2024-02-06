@@ -11,7 +11,7 @@ const ProductForm = ({ onAddProduct }) => {
       productDescription: '',
       image: '',
       price: '',
-      companyebsite: '',
+      companyWebsite: '',
     });
   
     const [errors, setErrors] = useState({});
@@ -57,14 +57,14 @@ const ProductForm = ({ onAddProduct }) => {
         body: JSON.stringify(product)
       })
         .then((response) =>{ return response.json()})
-        .then((addedProduct) => {
-          console.log("Product Added:", addedProduct);
+        .then((product) => {
+          console.log("Product Added:", product);
   
-          if (addedProduct) {
-            onAddProduct(addedProduct); // Set user state with the received user information
-            navigate("/productpage") // Set redirect state to true
+          if (product) {
+            onAddProduct(product); 
+            navigate("/products")
           } else {
-            console.log("Error Adding product:", addedProduct);
+            console.log("Error Adding product:", product);
             
            // throw new Error("Error!");
           }
