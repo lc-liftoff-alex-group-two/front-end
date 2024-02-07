@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BagHeartFill } from 'react-bootstrap-icons';
+import { PersonCircle } from 'react-bootstrap-icons';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -22,7 +23,9 @@ function NavScrollExample() {
             <Nav.Link as={Link} to="/products">PRODUCTS</Nav.Link>
           </Nav>
           <Nav className="ml-auto">
-          <Nav.Link as={Link} to="/favorites">FAVORITES LIST <BagHeartFill /></Nav.Link>
+          <Nav.Link as={Link} to="/favorites" className="favorites-icon">
+            <BagHeartFill />
+          </Nav.Link>
           </Nav>
 
           {/* Search bar */}
@@ -36,6 +39,11 @@ function NavScrollExample() {
             <Button variant="outline-success">Search</Button>
           </Form>
         </Navbar.Collapse>
+        <Nav className="ml-auto">
+        <Nav.Link as={Link} to="/favorites" className="larger-icon">
+            <PersonCircle />
+          </Nav.Link>
+          </Nav>
       </Container>
     </Navbar>
   );

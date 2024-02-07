@@ -134,6 +134,31 @@ const HomePage = () => {
       {/* Third Banner Image with Text Overlay */}
       <div style={{ position: 'relative' }}>
         <img
+          src="/images/BannerYellow2.jpg"
+          alt="Another Banner Image"
+          style={{ width: '100%', maxHeight: '550px', objectFit: 'cover' }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '60%',
+            transform: 'translate(-50%, -50%)',
+            color: '#fff',
+            textAlign: 'center',
+            padding: '70px',
+          }}
+        >
+          <h1>Have a product with a purpose?</h1>
+          <p></p>
+          <p>We are always looking to feature new products on our website! If your company would like to be featured please feel free to reach out to us by filling out our <Link to="/contact" style={{ color: 'white' }}>contact us</Link> form. The more companies we partner with, the more awareness we can bring to these amazing products and initiatives!</p>
+        </div>
+      </div>
+      
+       
+       {/* Fourth Banner Image with Text Overlay */}
+      <div style={{ position: 'relative' }}>
+        <img
           src="/images/help2.png"
           alt="Another Banner Image"
           style={{ width: '100%', maxHeight: '1100px', objectFit: 'cover' }}
