@@ -11,6 +11,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './HomePage.css';
 
+
 const HomePage = () => {
     // product data
     const products = [
@@ -59,7 +60,7 @@ const HomePage = () => {
           <img
             src="/images/donation2.jpg"
             alt="Banner Image"
-            style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }}
+            style={{ width: '100%', maxHeight: '600px', objectFit: 'cover' }}
           />
           <div
             style={{

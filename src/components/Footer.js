@@ -3,8 +3,27 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faFacebook, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import './Footer.css';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
+  const handleSignUpClick = () => {
+    // Check if already on register page
+    if (location.pathname === '/register') {
+      scrollToTop(); // Scroll to the top of the page
+    } else {
+      // Redirect to register page and scroll to top
+      navigate('/register');
+      scrollToTop();
+    }
+  };
+
   return (
     <footer className="footer">
       <div className="wave"></div>
@@ -44,11 +63,13 @@ const Footer = () => {
           <Col md={4}>
             <div className="footer-column">
               <h4 className="footer-column-3">Stay in the know</h4>
-              <p className="footer-column-3-p">Subscribe to our newsletter for updates!</p>
+              <p className="footer-column-3-p">
+                <Link to="/register" style={{ color: 'white' }}>Subscribe</Link> to our newsletter for updates!
+              </p>
            
               <div className="subscribe-section">
                 <input type="email" placeholder="Enter your email" className="email-input" />
-                <button className="subscribe-button">Sign Up</button>
+                <button className="subscribe-button" onClick={handleSignUpClick}>Sign Up</button>
               </div>
             </div>
           </Col>
@@ -56,7 +77,7 @@ const Footer = () => {
       </Container>
       <div className="footer-line"></div>
       <div className="footer-copyright">
-        &copy; 2024 Your Company. All rights reserved.
+        &copy; 2024 GiveWise. All rights reserved.
       </div>
     </footer>
   );
