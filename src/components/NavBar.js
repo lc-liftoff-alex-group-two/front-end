@@ -34,9 +34,6 @@ function NavScrollExample() {
             <Nav.Link as={Link} to="/products">
               PRODUCTS
             </Nav.Link>
-            <Nav.Link as={Link} to="/register">
-              REGISTER
-            </Nav.Link>
             <Nav.Link as={Link} to="/productadminpage">
               ADMIN
             </Nav.Link>
@@ -62,7 +59,7 @@ function NavScrollExample() {
           </Form>
         </Navbar.Collapse>
         <Nav className="ml-auto">
-        <Nav.Link as={Link} to="/favorites" className="larger-icon">
+        <Nav.Link as={Link} to="/register" className="larger-icon">
             <PersonCircle />
           </Nav.Link>
           </Nav>
