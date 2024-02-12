@@ -47,6 +47,20 @@ const Products = () => {
     fetchProducts();
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      await fetch (`http://localhost:8080/products/${id}`,{
+        method: 'DELETE',
+      });
+
+      setProducts((prevProducts) =>
+      prevProducts.filter((product) => product.id !== id)
+      );
+    } catch(error){
+      console.error('Error Deleting Product:', error);
+    }
+  };
+
   
   // const products = [
   //   {
@@ -218,7 +232,7 @@ const Products = () => {
     <h2>Products</h2>
     <div className="product-container">
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={product.id} product={product} onDelete={handleDelete}/>
       ))}
     </div>
   </div>

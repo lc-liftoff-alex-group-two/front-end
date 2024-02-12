@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import './ProductCard.css';
 
-const ProductCard = ({ product, isFavorite, toggleFavorite }) => {
+const ProductCard = ({ product, isFavorite, toggleFavorite, onDelete }) => {
   const handleFavoriteClick = () => {
     toggleFavorite(product.id);
   };
@@ -12,6 +12,10 @@ const ProductCard = ({ product, isFavorite, toggleFavorite }) => {
   const handleBuyClick = () => {
     window.location.href = product.companyWebsite;
   };
+
+  const handleDelete = () => {
+    onDelete(product.id);
+  }
 
   return (
     <div className="product-card">
@@ -34,6 +38,12 @@ const ProductCard = ({ product, isFavorite, toggleFavorite }) => {
         className="buy-button"
       >
         Buy Here
+      </Button>
+      <Button 
+      variant='primary'
+      onClick={handleDelete}
+      >
+        Delete
       </Button>
     </div>
   );
