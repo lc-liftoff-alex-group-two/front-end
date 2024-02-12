@@ -1,0 +1,89 @@
+.footer {
+  background: black; 
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-link {
+  display: block;
+  text-align: center;
+  font-family: 'Julius Sans One';
+  color: white;
+  text-transform: uppercase;
+}
+
+.social-links {
+  display: block;
+}
+
+.social-icon {
+  font-size: 24px;
+  margin-right: 10px;
+  color: white; /* Change color as needed */
+  text-align: center;
+}
+
+.footer-column-1 {
+  font-family: 'Julius Sans One';
+  text-transform: uppercase;
+}
+.footer-column-1-p {
+  margin-bottom: 40px;
+  
+}
+.footer-column-2-p {
+  margin-bottom: 40px;
+}
+.footer-column-3-p {
+  margin-bottom: 40px;
+}
+
+.footer-column-2 {
+  font-family: 'Julius Sans One';
+  text-transform: uppercase;
+}
+
+.footer-column-3 {
+  font-family: 'Julius Sans One';
+  text-transform: uppercase;
+}
+
+.subscribe-section {
+  display: flex;
+  align-items: center;
+}
+
+.email-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-right: 10px;
+  text-align: center; /* Added */
+}
+
+.subscribe-button {
+  padding: 10px 20px;
+  background-color: #007bff; /* Adjust as needed */
+  color: #fff; /* Adjust as needed */
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  text-align: center; /* Added */
+}
+
+.footer-line {
+  height: 1px;
+  background-color: #ccc; /* Adjust as needed */
+  margin: 20px 0;
+}
+
+.footer-copyright {
+  text-align: center;
+  font-size: 14px;
+  color: #555; /* Adjust as needed */
+  margin-top: 20px; /* Adjust as needed */
+}

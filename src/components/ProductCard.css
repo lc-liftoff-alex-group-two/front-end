@@ -32,25 +32,34 @@
 }
 
 .buy-button {
-  position:absolute;
+  position: absolute;
   bottom: 5px;
   padding: 1px;
   font-size: 11px;
+  right: 5px;
 }
+
 .custom-favorite-button {
-     
-  position:absolute;
+  position: absolute;
   bottom: 10px;
+  left: 3px;
   padding: 5px 5px;
   font-size: 25px;
   background-color: transparent;
-    
-  }
-.custom-favorite-button {
-    
-  left: 3px;
+  color: rgb(196, 188, 188); /* Initial color */
+  cursor: pointer;
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+.custom-favorite-button:focus {
+  outline: none; /* Remove the blue highlight on focus */
+  
+}
+.custom-favorite-button:hover {
+  --bs-btn-hover-bg: transparent !important;
+  --bs-btn-hover-color: rgb(175, 171, 171);
+
 }
 
-.buy-button {
-  right: 5px;
+.custom-favorite-button.favorite {
+  color: rgb(218, 50, 50); /* Color when favorited */
 }

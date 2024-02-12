@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
+import './ContactUs.css';
 
 const ContactUs = () => {
     const [formData, setFormData] = useState({
@@ -34,17 +35,24 @@ const ContactUs = () => {
     };
   
     return (
-        <div>
-      
+      <div>
       <div className="text-center">
-        <h2>Contact Us</h2>
+        <h2 className="contact-us-heading">Contact Us</h2>
         <p>If you have any questions or inquiries, please feel free to reach out to us!</p>
       </div>
 
-     
-      <div className="container mx-auto col-md-6">
+      <div className="container mx-auto col-md-6 mb-5">
+          {/* Centered Image */}
+          <div className="text-center">
+            <img
+              src="/images/ContactUsPage.jpg" 
+              alt="Contact Us Image"
+              className="img-fluid"
+            />
+          </div>
+
         {/* Contact Form */}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}> {/* Added marginTop style */}
           <div className="mb-3">
             <label htmlFor="name" className="form-label">Name:</label>
             <input
