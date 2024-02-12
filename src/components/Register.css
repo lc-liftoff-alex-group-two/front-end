@@ -1,7 +1,7 @@
 #register_body {
   --color-primary: #009579;
   --color-primary-dark: #007f67;
-  --color-secondary: #252c6a;
+  --color-secondary: white;
   --color-error: #cc3333;
   --color-success: #4bb544;
   --border-radius: 4px;
@@ -11,8 +11,9 @@
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  background: url("../../public/Images/backgound_register.jpg");
+  background: url("../../public/Images/Reg11.jpg");
   background-size: cover;
+  background-position:center;
 }
 #register_container {
   width: 400px;
@@ -21,12 +22,13 @@
   padding: 2rem;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
   border-radius: var(--border-radius);
-  background: #ffffff;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 #register_container,
 .form__input,
 .form__button {
   font: 500 1rem "Quicksand", sans-serif;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 .form--hidden {
   display: none;
@@ -63,12 +65,12 @@
   border-radius: var(--border-radius);
   border: 1px solid #dddddd;
   outline: none;
-  background: #eeeeee;
+  background-color: rgba(255, 255, 255, 0.5);
   transition: background 0.2s, border-color 0.2s;
 }
 .form__input:focus {
   border-color: var(--color-primary);
-  background: #ffffff;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 .form__input--error {
   color: var(--color-error);
@@ -102,4 +104,13 @@
 }
 .form__link:hover {
   text-decoration: underline;
+}
+.form_title {
+  color: white;
+  font-size: 40px; 
+    margin-top: 20px;
+    /* color: #333; */
+    text-align: center;
+    margin-bottom: 30px;
+    /* margin-top: 50px; */
 }
