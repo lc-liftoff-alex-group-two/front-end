@@ -1,49 +1,57 @@
 import React, { useState } from "react";
 import "./Register.css"; // Import your CSS file
+import { useAuth } from "./context/AuthContext";
+import { giveWiseApi } from "./GiveWise";
+import { handleLogError } from "./Helper";
+import { useNavigate } from "react-router-dom";
+import { Message } from "semantic-ui-react";
 
 const LoginForm = () => {
-  const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
-  });
+  const navigate = useNavigate();
+  const Auth = useAuth();
+  const isLoggedIn = Auth.userIsAuthenticated();
 
-  const [credentialError, setCredentialError] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isError, setIsError] = useState(false);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "email") {
+      setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
+    }
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!(email && password)) {
+      setIsError(true);
+      return;
+    }
 
-  const handleChange = (e) => {
-    setCredentials({
-      ...credentials,
-      [e.target.name]: e.target.value,
-    });
+    try {
+      const response = await giveWiseApi.authenticate(email, password);
+      const { id, name, role } = response.data;
+      console.log("ID: " + id);
+      console.log("Username: " + name);
+      console.log("Role: " + role);
+      const authdata = window.btoa(name + ":" + password);
+      const authenticatedUser = { id, name, role, authdata };
+
+      Auth.userLogin(authenticatedUser);
+
+      setEmail("");
+      setPassword("");
+      setIsError(false);
+    } catch (error) {
+      handleLogError(error);
+      setIsError(true);
+    }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    fetch("http://localhost:8080/auth/loginSubmit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(credentials),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Response data:", data);
-        if (data.error) {
-          // Set the error message if the server indicates an error
-          setCredentialError("Invalid credentials. Please try again.");
-        } else {
-          // Clear the error message if login is successful
-          setCredentialError("");
-          console.log("User created:", data);
-          // Redirect or perform other actions on successful login
-        }
-      })
-      .catch((error) => {
-        console.error("Error creating user:", error);
-        // Handle other errors if needed
-      });
-  };
-
+  if (isLoggedIn) {
+    navigate("/products");
+  }
   return (
     <body id="register_body">
       <div className="register_container">
@@ -57,8 +65,8 @@ const LoginForm = () => {
               autoFocus
               placeholder="Enter email"
               name="email"
-              value={credentials.email}
-              onChange={handleChange}
+              value={email}
+              onChange={handleInputChange}
             />
           </div>
           <div className="form__input-group">
@@ -69,13 +77,15 @@ const LoginForm = () => {
               autoFocus
               placeholder="Enter Password"
               name="password"
-              value={credentials.password}
-              onChange={handleChange}
+              value={password}
+              onChange={handleInputChange}
             />
           </div>
-          <div id="credentialError" style={{ color: "red" }}>
-            {credentialError}
-          </div>
+          {isError && (
+            <Message negative>
+              The username or password provided are incorrect!
+            </Message>
+          )}
           <br />
           <button id="loginBtn" className="form__button" type="submit">
             Continue
