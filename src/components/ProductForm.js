@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { giveWiseApi } from "./GiveWise";
+import { useAuth } from "./context/AuthContext";
+
 const ProductForm = ({ onAddProduct }) => {
   const [product, setProduct] = useState({
     id: "",
@@ -13,7 +15,7 @@ const ProductForm = ({ onAddProduct }) => {
     price: "",
     companyWebsite: "",
   });
-
+  const Auth = useAuth();
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -57,7 +59,7 @@ const ProductForm = ({ onAddProduct }) => {
     }
 
     const authHeader = {
-      Authorization: giveWiseApi.basicAuth(product),
+      Authorization: giveWiseApi.basicAuth(Auth.getUser()),
       "Content-Type": "application/json",
     };
 
