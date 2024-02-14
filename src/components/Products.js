@@ -1,11 +1,10 @@
 //import React from 'react';
-import ProductCard from './ProductCard';
-import './Products.css';
-import React, {useState, useEffect} from 'react';
+import ProductCard from "./ProductCard";
+import "./Products.css";
+import React, { useState, useEffect } from "react";
 //import axios from 'axios';
 
 const Products = () => {
-
   // const handleLogError = (error) => {
   //   if (error.response) {
   //     console.log(error.response.data)
@@ -36,11 +35,11 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:8080/products');
+        const response = await fetch("http://localhost:8080/products/list");
         const data = await response.json();
         setProducts(data);
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error("Error fetching products:", error);
       }
     };
 
@@ -49,19 +48,18 @@ const Products = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch (`http://localhost:8080/products/${id}`,{
-        method: 'DELETE',
+      await fetch(`http://localhost:8080/products/${id}`, {
+        method: "DELETE",
       });
 
       setProducts((prevProducts) =>
-      prevProducts.filter((product) => product.id !== id)
+        prevProducts.filter((product) => product.id !== id)
       );
-    } catch(error){
-      console.error('Error Deleting Product:', error);
+    } catch (error) {
+      console.error("Error Deleting Product:", error);
     }
   };
 
-  
   // const products = [
   //   {
   //     id: 1,
@@ -223,20 +221,23 @@ const Products = () => {
   //       price: '$139',
   //       companyWebsite: 'https://www.patagonia.com/product/womens-lightweight-synchilla-snap-t-fleece-pullover/25455.html?avad=55097_b36c191d1&netid=1&pubid=40661&utm_source=skimlinks.com&utm_medium=affiliate&utm_campaign=Custom+Link&src=cl&src=avl',
   //     },
-    //Add more products as needed
+  //Add more products as needed
   // ];
-  
 
   return (
     <div>
-    <h2>Products</h2>
-    <div className="product-container">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} onDelete={handleDelete}/>
-      ))}
+      <h2>Products</h2>
+      <div className="product-container">
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            onDelete={handleDelete}
+          />
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default Products;

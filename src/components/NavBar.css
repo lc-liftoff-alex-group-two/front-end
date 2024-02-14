@@ -44,4 +44,12 @@ body {
     font-weight: 700;
     
   }
+  .larger-icon svg {
+    width: 2em; /* Adjust the size as needed */
+    height: 2em; /* Adjust the size as needed */
+  }
+  .favorites-icon svg {
+    width: 1.5em; /* Adjust the size as needed */
+    height: 1.5em; /* Adjust the size as needed */
+  }
 

@@ -1,40 +1,65 @@
-.App {
+.product-card {
+  position: relative;
+  margin: 10px;
   text-align: center;
+  width: calc(25% - 20px);
+  max-width: 200px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.product-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.product-name {
+  font-size: 16px;
+  margin-bottom: 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.product-description {
+  font-size: 12px;
+  margin-bottom: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.product-price {
+  font-size: 14px;
+  font-weight: bolder;
+  margin-bottom: 45px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.buy-button {
+  position: absolute;
+  bottom: 5px;
+  padding: 1px;
+  font-size: 11px;
+  right: 5px;
+}
+
+.custom-favorite-button {
+  position: absolute;
+  bottom: 10px;
+  left: 3px;
+  padding: 5px 5px;
+  font-size: 25px;
+  background-color: transparent;
+  color: rgb(196, 188, 188); /* Initial color */
+  cursor: pointer;
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+.custom-favorite-button:focus {
+  outline: none; /* Remove the blue highlight on focus */
+  
+}
+.custom-favorite-button:hover {
+  --bs-btn-hover-bg: transparent !important;
+  --bs-btn-hover-color: rgb(175, 171, 171);
 
 }
 
+.custom-favorite-button.favorite {
+  color: rgb(218, 50, 50); /* Color when favorited */
+}

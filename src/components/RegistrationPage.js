@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
 const RegisterForm = () => {
+  
   const navigate = useNavigate();
   const [user, setUserData] = useState({
     id: "",
@@ -111,7 +112,7 @@ const RegisterForm = () => {
               value={user.email}
               onChange={handleChange}
               autoFocus
-              placeholder="Email id"
+              placeholder="Email"
             />
           </div>
           {errors.email && <div style={{ color: "red" }}>{errors.email}</div>}
