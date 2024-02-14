@@ -1,10 +1,17 @@
-import React from 'react';
-import { HeartFill } from 'react-bootstrap-icons';
-import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
-import './ProductCard.css';
+import React from "react";
+import { HeartFill } from "react-bootstrap-icons";
+import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
+import "./ProductCard.css";
+import { useAuth } from "./context/AuthContext";
 
 const ProductCard = ({ product, isFavorite, toggleFavorite, onDelete }) => {
+  const { getUser } = useAuth();
+  const getUserRole = () => {
+    const user = getUser();
+    const isAdmin = user && user.role === "ADMIN";
+    return isAdmin;
+  };
   const handleFavoriteClick = () => {
     toggleFavorite(product.id);
   };
@@ -15,7 +22,7 @@ const ProductCard = ({ product, isFavorite, toggleFavorite, onDelete }) => {
 
   const handleDelete = () => {
     onDelete(product.id);
-  }
+  };
 
   return (
     <div className="product-card">
@@ -26,25 +33,20 @@ const ProductCard = ({ product, isFavorite, toggleFavorite, onDelete }) => {
       <p className="product-description">{product.productDescription}</p>
       <p className="product-price">${product.price}</p>
       <Button
-        className={`custom-favorite-button ${isFavorite ? 'favorite' : ''}`}
+        className={`custom-favorite-button ${isFavorite ? "favorite" : ""}`}
         // style={{ color: isFavorite ? 'red' : 'black' }}
         onClick={handleFavoriteClick}
       >
         <HeartFill />
       </Button>
-      <Button
-        variant="primary"
-        onClick={handleBuyClick}
-        className="buy-button"
-      >
+      <Button variant="primary" onClick={handleBuyClick} className="buy-button">
         Buy Here
       </Button>
-      <Button 
-      variant='primary'
-      onClick={handleDelete}
-      >
-        Delete
-      </Button>
+      {getUserRole() && (
+        <Button variant="primary" onClick={handleDelete}>
+          Delete
+        </Button>
+      )}
     </div>
   );
 };
