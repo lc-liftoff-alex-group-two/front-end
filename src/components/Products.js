@@ -233,7 +233,7 @@ const Products = () => {
 
   return (
     <div>
-      <h2>Products</h2>
+      <h2 className="products-heading-text">Products</h2>
       <div className="product-container">
         {products.map((product) => (
           <ProductCard
