@@ -33,33 +33,67 @@
 
 .buy-button {
   position: absolute;
-  bottom: 5px;
+  bottom: 10px;
   padding: 1px;
   font-size: 11px;
   right: 5px;
+  height: 40px;
+  width: 40%;
+  outline: none;
+  border: none;
+  background: green;
+  color: white;
+  border-radius: 60px;
+  font-weight: 700;
 }
 
 .custom-favorite-button {
   position: absolute;
-  bottom: 10px;
-  left: 3px;
+  bottom: 3px;
+  left: 15px;
   padding: 5px 5px;
-  font-size: 25px;
+  font-size: 35px;
   background-color: transparent;
   color: rgb(196, 188, 188); /* Initial color */
   cursor: pointer;
   transition: color 0.3s ease; /* Smooth color transition */
+  outline: none;
+  border: none;
 }
-.custom-favorite-button:focus {
-  outline: none; /* Remove the blue highlight on focus */
+
+/* Remove outline from the SVG element within the favorites button */
+.custom-favorite-button svg {
+  outline-color: none;
+  outline-style: none;
   
 }
+
+.custom-favorite-button:focus {
+  outline: none !important; /* Remove the blue highlight on focus */
+}
+
 .custom-favorite-button:hover {
   --bs-btn-hover-bg: transparent !important;
-  --bs-btn-hover-color: rgb(175, 171, 171);
-
+  --bs-btn-hover-color: rgb(175, 171, 171) !important;
 }
 
 .custom-favorite-button.favorite {
   color: rgb(218, 50, 50); /* Color when favorited */
 }
+.no-focus-outline {
+  outline: none;
+}
+.delete-button {
+ background: red;
+ border-radius: 60px;
+ font-weight: 500;
+ outline: none;
+border: none;
+bottom: 20px;
+position:absolute;
+right: 80px;
+font-size: 10px;
+
+
+}
+
