@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import './ProductCard.css';
 
-const ProductCard = ({ product, isFavorite, toggleFavorite, onDelete }) => {
+const ProductCard = ({ product, toggleFavorite, onDelete }) => {
   const handleFavoriteClick = () => {
     toggleFavorite(product.id);
   };
@@ -26,22 +26,19 @@ const ProductCard = ({ product, isFavorite, toggleFavorite, onDelete }) => {
       <p className="product-description">{product.productDescription}</p>
       <p className="product-price">${product.price}</p>
       <Button
-        className={`custom-favorite-button ${isFavorite ? 'favorite' : ''}`}
-        // style={{ color: isFavorite ? 'red' : 'black' }}
+        className={`custom-favorite-button ${product.isFavorite ? 'favorite' : ''}`}
         onClick={handleFavoriteClick}
       >
-        <HeartFill />
+        <HeartFill className="no-focus-outline" />
       </Button>
       <Button
-        variant="primary"
         onClick={handleBuyClick}
         className="buy-button"
       >
         Buy Here
       </Button>
-      <Button 
-      variant='primary'
-      onClick={handleDelete}
+      <Button className='delete-button'
+        onClick={handleDelete}
       >
         Delete
       </Button>
@@ -50,3 +47,4 @@ const ProductCard = ({ product, isFavorite, toggleFavorite, onDelete }) => {
 };
 
 export default ProductCard;
+

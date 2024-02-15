@@ -98,7 +98,7 @@ const ContactUs = () => {
             </div>
   
             <div className="text-center">
-              <button type="submit" className="btn btn-primary">Submit</button>
+              <button type="submit" className="contact-submit-btn">Submit</button>
             </div>
           </form>
         </div>

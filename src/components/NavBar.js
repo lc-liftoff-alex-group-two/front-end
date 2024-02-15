@@ -79,7 +79,7 @@ function NavScrollExample() {
               className="px-2 search"
               aria-label="Search"
             />
-            <Button variant="outline-success">Search</Button>
+            <Button className="search-btn">Search</Button>
           </Form>
         </Navbar.Collapse>
         <Nav className="ml-auto">
