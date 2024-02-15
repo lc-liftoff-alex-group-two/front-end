@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
+
 const RegisterForm = () => {
   
   const navigate = useNavigate();
