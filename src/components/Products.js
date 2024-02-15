@@ -1,8 +1,22 @@
 import ProductCard from "./ProductCard";
 import "./Products.css";
 import React, { useState, useEffect } from "react";
+import { giveWiseApi } from "./GiveWise";
+import { useAuth } from "./context/AuthContext";
+//import axios from 'axios';
 
 const Products = () => {
+  const Auth = useAuth();
+  // const handleLogError = (error) => {
+  //   if (error.response) {
+  //     console.log(error.response.data)
+  //   } else if (error.request) {
+  //     console.log(error.request)
+  //   } else {
+  //     console.log(error.message)
+  //   }
+  // }
+  // const [isProductsLoading, setIsProductsLoading] = useState(false)
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -22,9 +36,13 @@ const Products = () => {
   }, []);
 
   const handleDelete = async (id) => {
+    const authHeader = {
+      Authorization: giveWiseApi.basicAuth(Auth.getUser()),
+    };
     try {
-      await fetch(`http://localhost:8080/products/${id}`, {
+      await fetch(`http://localhost:8080/products/delete/${id}`, {
         method: "DELETE",
+        headers: authHeader,
       });
 
       setProducts((prevProducts) =>

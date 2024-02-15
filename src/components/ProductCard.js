@@ -1,10 +1,17 @@
-import React from 'react';
-import { HeartFill } from 'react-bootstrap-icons';
-import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
-import './ProductCard.css';
+import React from "react";
+import { HeartFill } from "react-bootstrap-icons";
+import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
+import "./ProductCard.css";
+import { useAuth } from "./context/AuthContext";
 
-const ProductCard = ({ product, toggleFavorite, onDelete }) => {
+const ProductCard = ({ product, isFavorite, toggleFavorite, onDelete }) => {
+  const { getUser } = useAuth();
+  const getUserRole = () => {
+    const user = getUser();
+    const isAdmin = user && user.role === "ADMIN";
+    return isAdmin;
+  };
   const handleFavoriteClick = () => {
     toggleFavorite(product.id);
   };
@@ -15,7 +22,7 @@ const ProductCard = ({ product, toggleFavorite, onDelete }) => {
 
   const handleDelete = () => {
     onDelete(product.id);
-  }
+  };
 
   return (
     <div className="product-card">
@@ -37,14 +44,13 @@ const ProductCard = ({ product, toggleFavorite, onDelete }) => {
       >
         Buy Here
       </Button>
-      <Button className='delete-button'
-        onClick={handleDelete}
-      >
-        Delete
-      </Button>
+      {getUserRole() && (
+        <Button className='delete-button' onClick={handleDelete}>
+          Delete
+        </Button>
+      )}
     </div>
   );
 };
 
 export default ProductCard;
-
