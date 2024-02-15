@@ -30,7 +30,7 @@ const ProductCard = ({ product, isFavorite, toggleFavorite, onDelete }) => {
         <img src={product.image} alt={product.name} className="product-image" />
         <h3 className="product-name">{product.productName}</h3>
       </Link>
-      <p className="product-description">{product.productDescription}</p>
+      {<p className="product-description">{product.productDescription}</p> }
       <p className="product-price">${product.price}</p>
       <Button
         className={`custom-favorite-button ${product.isFavorite ? 'favorite' : ''}`}
