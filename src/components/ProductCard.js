@@ -4,17 +4,51 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import "./ProductCard.css";
 import { useAuth } from "./context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { giveWiseApi } from "./GiveWise";
 
 const ProductCard = ({ product, isFavorite, toggleFavorite, onDelete }) => {
+  const navigate = useNavigate();
   const { getUser } = useAuth();
   const getUserRole = () => {
     const user = getUser();
     const isAdmin = user && user.role === "ADMIN";
     return isAdmin;
   };
-  const handleFavoriteClick = () => {
-    toggleFavorite(product.id);
+  const Authr = useAuth();
+  const handleFavoriteClick = async() => {
+    
+
+    if(!Authr){
+      navigate('/login')
+      return;
+    }
+
+    const user= Authr.getUser().id;
+    const authHeader = {
+      Authorization: giveWiseApi.basicAuth(Authr.getUser()),
+      "Content-Type": "application/json",
+    };
+console.log("userid"+user);
+console.log("productid"+product.id);
+    try{
+      const response = await fetch('http://localhost:8080/favorites/add', {
+        method: 'POST',
+        headers: authHeader,
+       body: JSON.stringify({userid: user, productid: product.id}),
+      })
+      if(response.ok){
+        toggleFavorite(product.id);
+      }else {
+        console.error('Failed to add product to favorites');
+      }
+    } catch (error) {
+      console.error('Error adding product to favorites:', error);
+    }
+
+          
   };
+
 
   const handleBuyClick = () => {
     window.location.href = product.companyWebsite;
