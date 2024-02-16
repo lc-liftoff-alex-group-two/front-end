@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
+
 const RegisterForm = () => {
-  
   const navigate = useNavigate();
   const [user, setUserData] = useState({
     id: "",
@@ -59,7 +59,6 @@ const RegisterForm = () => {
       setErrors(newErrors);
       return;
     }
-
     fetch("http://localhost:8080/user/register", {
       method: "POST",
       headers: {
@@ -67,19 +66,23 @@ const RegisterForm = () => {
       },
       body: JSON.stringify(user),
     })
-      .then((response) => response.json())
-      .then((user) => {
-        console.log("User created:", user);
-
-        if (user) {
-          setUserData(user); // Set user state with the received user information
+      .then((response) => {
+        if (response.status === 201) {
+          // Successful registration
+          alert("User registered successfully");
           navigate("/login"); // Set redirect state to true
+        } else if (response.status === 409) {
+          // Email already exists
+          alert("Email already exists");
         } else {
-          console.log("Error creating user:", user);
-          // Handle error scenarios or display a message to the user
+          // Error handling for other HTTP status codes
+          alert(`Error: ${response.status}`);
         }
       })
-      .catch((error) => console.error("Error creating user:", error));
+      .catch((error) => {
+        console.error("Error creating user:", error.message);
+        alert("Error creating user");
+      });
   };
   return (
     <body id="register_body">
