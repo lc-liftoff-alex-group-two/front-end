@@ -7,7 +7,7 @@ import { useAuth } from "./context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { giveWiseApi } from "./GiveWise";
 
-const ProductCard = ({ product, isFavorite, toggleFavorite, onDelete }) => {
+const ProductCard = ({ product, toggleFavorite, onDelete }) => {
   const navigate = useNavigate();
   const { getUser } = useAuth();
   const getUserRole = () => {

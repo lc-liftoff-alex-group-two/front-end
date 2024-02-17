@@ -3,10 +3,9 @@ import './FavoritesList.css';
 import {useNavigate} from 'react-router-dom'
 import { useAuth } from './context/AuthContext';
 import { giveWiseApi } from "./GiveWise";
-import ProductCard from './ProductCard';
-import Products from './Products';
 import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
+
 
 
 const FavoritesList = ({ userId }) => {
@@ -14,12 +13,12 @@ const FavoritesList = ({ userId }) => {
   const [favorites, setFavorites] = useState([]);
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-  // const { getUser } = useAuth();
-  // const getUserRole = () => {
-  //   const user = getUser();
-  //   const isAdmin = user && user.role === "ADMIN";
-  //   return isAdmin;
-  // };
+  const { getUser } = useAuth();
+  const getUserRole = () => {
+    const user = getUser();
+    const isAdmin = user && user.role === "ADMIN";
+    return isAdmin;
+  };
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -28,7 +27,7 @@ const FavoritesList = ({ userId }) => {
           navigate('/login');
           return;
         }
-        // const user = Auth.getUser();
+        //const user = Auth.getUser();
         const user = await Auth.getUser()
         const authHeader = {
           Authorization: giveWiseApi.basicAuth(user),
@@ -63,49 +62,56 @@ const FavoritesList = ({ userId }) => {
 
  
 
-  // const onDelete = async (id) => {
-  //   const authHeader = {
-  //     Authorization: giveWiseApi.basicAuth(Auth.getUser()),
-  //   };
-  //   try {
-  //     await fetch(`http://localhost:8080/favorites/delete/${id}`, {
-  //       method: "DELETE",
-  //       headers: authHeader,
-  //     });
+  const onDelete = async (productId) => {
+    const authHeader = {
+      Authorization: giveWiseApi.basicAuth(Auth.getUser()),
+    };
+    try {
+      await fetch(`http://localhost:8080/favorites/delete/${productId}`, {
+        method: "DELETE",
+        headers: authHeader,
+      });
+  
+      setFavorites((prevFavorites) =>
+        prevFavorites.filter((favorite) => favorite.userId !== userId || favorite.productId !== productId)
+      );
+    } catch (error) {
+      console.error("Error Deleting Favorite:", error);
+    }
+  };
 
-  //     setFavorites((prevFavorites) =>
-  //       prevFavorites.filter((Favorites) => Favorites.id !== id)
-  //     );
-  //   } catch (error) {
-  //     console.error("Error Deleting Favorites:", error);
-  //   }
-  // };
+  
 
-  // const handleDelete = () => {
-  //   onDelete(favorites.id);
-  // };
+  const handleBuyNow = (companyWebsite) => {
+    
+    window.location.href = companyWebsite;
+    
+  };
+
+  
 
 
 
   return (
-    <div>
+    <div >
       <h2>Favorites</h2>
-      <ul>
-        {/* {products.map((product) => (
-          <li key={product.id} product={product} />
-        ))} */
-        favorites.map((favorite) => (
-                  <li key={favorite.id}>{favorite.product}</li>
-                ))}
+      {favorites.map((favorite) => (
+        <div key={favorite.id} className='favorites-card' >
+          <img src={favorite.image} alt={favorite.name} className="product-image" />
+          <h3 className="product-name">{favorite.productName}</h3>
+          <p className="product-description">{favorite.productDescription}</p>
+          <p className="product-price">${favorite.price}</p>
 
-      {/* {getUserRole() && (
-        <Button className='delete-button' onClick={handleDelete}>
-          Remove
-        </Button>
-      )} */}
-         
-       
-      </ul>
+          {getUserRole() && (
+            <Button className='delete-button' onClick={() => onDelete(favorite.id)}>
+              Remove
+            </Button>
+          )}
+          <Button className='buy-button' onClick={() => handleBuyNow(favorite.companyWebsite)}>
+                Buy Here
+              </Button>
+        </div>
+      ))}
     </div>
   );
 };
