@@ -14,11 +14,11 @@ const FavoritesList = ({ userId }) => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const { getUser } = useAuth();
-  const getUserRole = () => {
-    const user = getUser();
-    const isAdmin = user && user.role === "ADMIN";
-    return isAdmin;
-  };
+  // const getUserRole = () => {
+  //   const user = getUser();
+  //   const isAdmin = user && user.role === "ADMIN";
+  //   return {user,isAdmin};
+  // };
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -46,6 +46,7 @@ const FavoritesList = ({ userId }) => {
           console.log(data)
           // Assuming you have a 'products' field in your 'data' object, update as needed
           setProducts(data.products);
+         // navigate("/favorites")
         } else {
           console.error('Failed to fetch favorites');
         }
@@ -101,12 +102,12 @@ const FavoritesList = ({ userId }) => {
           <h3 className="product-name">{favorite.productName}</h3>
           <p className="product-description">{favorite.productDescription}</p>
           <p className="product-price">${favorite.price}</p>
-
-          {getUserRole() && (
+{/* 
+          {getUserRole() && ( */}
             <Button className='delete-button' onClick={() => onDelete(favorite.id)}>
               Remove
             </Button>
-          )}
+          {/* )} */}
           <Button className='buy-button' onClick={() => handleBuyNow(favorite.companyWebsite)}>
                 Buy Here
               </Button>

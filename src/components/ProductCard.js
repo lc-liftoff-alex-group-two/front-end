@@ -13,29 +13,29 @@ const ProductCard = ({ product, toggleFavorite, onDelete }) => {
   const getUserRole = () => {
     const user = getUser();
     const isAdmin = user && user.role === "ADMIN";
-    return isAdmin;
+    return  isAdmin;
   };
   const Authr = useAuth();
   const handleFavoriteClick = async() => {
     
 
-    if(!Authr){
+    if(!Authr.userIsAuthenticated()){
       navigate('/login')
       return;
     }
 
-    const user= Authr.getUser().id;
+    const userId= getUser().id;
     const authHeader = {
       Authorization: giveWiseApi.basicAuth(Authr.getUser()),
       "Content-Type": "application/json",
     };
-console.log("userid"+user);
-console.log("productid"+product.id);
+//console.log("userid"+user);
+//console.log("productid"+product.id);
     try{
       const response = await fetch('http://localhost:8080/favorites/add', {
         method: 'POST',
         headers: authHeader,
-       body: JSON.stringify({userid: user, productid: product.id}),
+       body: JSON.stringify({userid: userId, productid: product.id}),
       })
       if(response.ok){
         toggleFavorite(product.id);
@@ -78,7 +78,7 @@ console.log("productid"+product.id);
       >
         Buy Here
       </Button>
-      {getUserRole() && (
+      {getUserRole()&& (
         <Button className='delete-button' onClick={handleDelete}>
           Delete
         </Button>
