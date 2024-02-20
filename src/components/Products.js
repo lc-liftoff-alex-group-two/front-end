@@ -3,17 +3,21 @@ import "./Products.css";
 import React, { useState, useEffect } from "react";
 import { giveWiseApi } from "./GiveWise";
 import { useAuth } from "./context/AuthContext";
+import { useLocation } from "react-router-dom"; // Import useLocation
 
-const Products = ({ searchTerm }) => { // Destructure searchTerm from props
+const Products = () => {
   const Auth = useAuth();
+  const location = useLocation(); // Use useLocation hook to access location object
   const [products, setProducts] = useState([]);
   const [sortOrder, setSortOrder] = useState("lowToHigh");
+  const searchTerm = location.state && location.state.searchResults; // Access searchTerm from location state
 
   useEffect(() => {
     const fetchProducts = async () => {
       let url = "http://localhost:8080/products/list";
-      if (!!searchTerm && String(searchTerm).trim().length !== 0) { 
-        url = `http://localhost:8080/products/search/${searchTerm}`;
+      if (searchTerm && searchTerm.length !== 0) {
+        const productName = searchTerm[0].productName; // Extract productName from the object
+        url = `http://localhost:8080/products/search/${productName}`;
       }
       try {
         const response = await fetch(url);
@@ -27,9 +31,9 @@ const Products = ({ searchTerm }) => { // Destructure searchTerm from props
         console.error("Error fetching products:", error);
       }
     };
-
+  
     fetchProducts();
-  }, [searchTerm]); // Make useEffect dependent on searchTerm
+  }, [searchTerm]);
 
   const handleDelete = async (id) => {
     const authHeader = {
