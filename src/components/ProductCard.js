@@ -22,10 +22,18 @@ const ProductCard = ({ product, toggleFavorite, onDelete }) => {
     }
 
     const userId = getUser().id;
-    const authHeader = {
+       const authHeader = {
       Authorization: giveWiseApi.basicAuth(Authr.getUser()),
       "Content-Type": "application/json",
     };
+
+     // Check if the product is already in the user's favorites
+     if (product.isFavorite) {
+      // Optionally, you can display a message to the user that the product is already in favorites
+      console.log('Product is already in favorites');
+      return;
+    }
+
 
     try {
       const response = await fetch("http://localhost:8080/favorites/add", {
