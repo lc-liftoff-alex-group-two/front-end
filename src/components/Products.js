@@ -3,28 +3,21 @@ import "./Products.css";
 import React, { useState, useEffect } from "react";
 import { giveWiseApi } from "./GiveWise";
 import { useAuth } from "./context/AuthContext";
-//import axios from 'axios';
 
-const Products = () => {
+const Products = ({ searchTerm }) => { // Destructure searchTerm from props
   const Auth = useAuth();
-  // const handleLogError = (error) => {
-  //   if (error.response) {
-  //     console.log(error.response.data)
-  //   } else if (error.request) {
-  //     console.log(error.request)
-  //   } else {
-  //     console.log(error.message)
-  //   }
-  // }
-  // const [isProductsLoading, setIsProductsLoading] = useState(false)
   const [products, setProducts] = useState([]);
   const [sortOrder, setSortOrder] = useState("lowToHigh");
+
   useEffect(() => {
     const fetchProducts = async () => {
+      let url = "http://localhost:8080/products/list";
+      if (!!searchTerm && String(searchTerm).trim().length !== 0) { 
+        url = `http://localhost:8080/products/search/${searchTerm}`;
+      }
       try {
-        const response = await fetch("http://localhost:8080/products/list");
+        const response = await fetch(url);
         const data = await response.json();
-        // Initialize the favorite status for each product to false
         const productsWithFavorites = data.map((product) => ({
           ...product,
           isFavorite: false,
@@ -36,7 +29,7 @@ const Products = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [searchTerm]); // Make useEffect dependent on searchTerm
 
   const handleDelete = async (id) => {
     const authHeader = {
@@ -47,7 +40,6 @@ const Products = () => {
         method: "DELETE",
         headers: authHeader,
       });
-
       setProducts((prevProducts) =>
         prevProducts.filter((product) => product.id !== id)
       );
@@ -57,7 +49,6 @@ const Products = () => {
   };
 
   const toggleFavorite = (productId) => {
-    // Update the state to toggle the favorite status for the product with productId
     setProducts((prevProducts) =>
       prevProducts.map((product) =>
         product.id === productId
@@ -66,17 +57,17 @@ const Products = () => {
       )
     );
   };
+
   const handleSort = () => {
     const sortedProducts = [...products];
-
     if (sortOrder === "lowToHigh") {
       sortedProducts.sort((a, b) => a.price - b.price);
     } else {
       sortedProducts.sort((a, b) => b.price - a.price);
     }
-
     setProducts(sortedProducts);
   };
+
   return (
     <div>
       <h2 className="products-heading-text">Products</h2>

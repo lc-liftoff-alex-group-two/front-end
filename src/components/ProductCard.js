@@ -1,7 +1,6 @@
 import React from "react";
 import { HeartFill } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
 import "./ProductCard.css";
 import { useAuth } from "./context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -13,42 +12,36 @@ const ProductCard = ({ product, toggleFavorite, onDelete }) => {
   const getUserRole = () => {
     const user = getUser();
     const isAdmin = user && user.role === "ADMIN";
-    return  isAdmin;
+    return isAdmin;
   };
   const Authr = useAuth();
-  const handleFavoriteClick = async() => {
-    
-
-    if(!Authr.userIsAuthenticated()){
-      navigate('/login')
+  const handleFavoriteClick = async () => {
+    if (!Authr.userIsAuthenticated()) {
+      navigate("/login");
       return;
     }
 
-    const userId= getUser().id;
+    const userId = getUser().id;
     const authHeader = {
       Authorization: giveWiseApi.basicAuth(Authr.getUser()),
       "Content-Type": "application/json",
     };
-//console.log("userid"+user);
-//console.log("productid"+product.id);
-    try{
-      const response = await fetch('http://localhost:8080/favorites/add', {
-        method: 'POST',
+
+    try {
+      const response = await fetch("http://localhost:8080/favorites/add", {
+        method: "POST",
         headers: authHeader,
-       body: JSON.stringify({userid: userId, productid: product.id}),
-      })
-      if(response.ok){
+        body: JSON.stringify({ userid: userId, productid: product.id }),
+      });
+      if (response.ok) {
         toggleFavorite(product.id);
-      }else {
-        console.error('Failed to add product to favorites');
+      } else {
+        console.error("Failed to add product to favorites");
       }
     } catch (error) {
-      console.error('Error adding product to favorites:', error);
+      console.error("Error adding product to favorites:", error);
     }
-
-          
   };
-
 
   const handleBuyClick = () => {
     window.location.href = product.companyWebsite;
@@ -60,11 +53,9 @@ const ProductCard = ({ product, toggleFavorite, onDelete }) => {
 
   return (
     <div className="product-card">
-      <Link to={`/products/${product.id}`}>
-        <img src={product.image} alt={product.name} className="product-image" />
-        <h3 className="product-name">{product.productName}</h3>
-      </Link>
-      {<p className="product-description">{product.productDescription}</p> }
+      <img src={product.image} alt={product.name} className="product-image" />
+      <h3 className="product-name">{product.productName}</h3>
+      {<p className="product-description">{product.productDescription}</p>}
       <p className="product-price">${product.price}</p>
       <Button
         className={`custom-favorite-button ${product.isFavorite ? 'favorite' : ''}`}
@@ -78,7 +69,7 @@ const ProductCard = ({ product, toggleFavorite, onDelete }) => {
       >
         Buy Here
       </Button>
-      {getUserRole()&& (
+      {getUserRole() && (
         <Button className='delete-button' onClick={handleDelete}>
           Delete
         </Button>
