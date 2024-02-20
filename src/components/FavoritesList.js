@@ -48,19 +48,28 @@ const FavoritesList = ({ userId }) => {
     const authHeader = {
       Authorization: giveWiseApi.basicAuth(Auth.getUser()),
     };
+  
     try {
-      await fetch(`http://localhost:8080/favorites/delete/${productId}`, {
+      // Assuming you have the userId available in your component
+      const userId = Auth.getUser().id;
+  
+      await fetch(`http://localhost:8080/favorites/delete/${userId}/${productId}`, {
         method: "DELETE",
         headers: authHeader,
       });
-
+  
       setFavorites((prevFavorites) =>
-        prevFavorites.filter((favorite) => favorite.userId !== userId || favorite.productId !== productId)
+        prevFavorites.filter(
+          (favorite) =>
+            favorite.userId !== userId || favorite.productId !== productId
+        )
       );
     } catch (error) {
       console.error("Error Deleting Favorite:", error);
+      // Handle error - show a message to the user, or log it for further investigation
     }
   };
+  
 
   const handleBuyNow = (companyWebsite) => {
     window.location.href = companyWebsite;
