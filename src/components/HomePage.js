@@ -153,7 +153,7 @@ const HomePage = () => {
         >
           <h1>Have a product with a purpose?</h1>
           <p></p>
-          <p>We are always looking to feature new products on our website! If your company would like to be featured please feel free to reach out to us by filling out our <Link to="/contact" style={{ color: 'white' }}>contact us</Link> form. The more companies we partner with, the more awareness we can bring to these amazing products and initiatives!</p>
+          <p>We are always looking to feature new products on our website! If your company would like to be featured, please feel free to reach out to us by filling out our <Link to="/contact" style={{ color: 'white' }}>contact us</Link> form. The more companies we partner with, the more awareness we can bring to these amazing products and initiatives!</p>
         </div>
       </div>
       
