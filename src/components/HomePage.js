@@ -16,12 +16,12 @@ import Products from './Products';
 const HomePage = () => {
     // product data
     const products = [
-      { id: 1, name: 'Williams Sonoma No Kid Hungry Tools For Change Spatula', image: '/images/Spatula.jpg' },
-      { id: 2, name: 'Purpose Jewelry Daisy Earrings', image: '/images/DaisyEarrings.jpg' },
-      { id: 3, name: 'Jewel Garden', image: '/images/JewelGarden.jpg' },
-      { id: 4, name: 'Out of Print Read Your Socks Off Socks', image: '/images/ReadYourSocksOff.jpg' },
-      
+      { id: 1, name: 'Williams Sonoma No Kid Hungry Tools For Change Spatula', image: '/images/Spatula.jpg', companyUrl: 'https://www.williams-sonoma.com/products/nkh-silicone-fsc-wood-spatula-common-2023/?cm_cat=10078&cm_ven=afshoppromo&clickid=0L%253ATKo0JDxyPUTvwQQxEOUzDUkHzzV2UrUULS80&irgwc=1&bnrid=3917500&cm_ite=oprahdaily.com&cm_pla=ir&irpid=10078' },
+      { id: 2, name: 'Purpose Jewelry Daisy Earrings', image: '/images/DaisyEarrings.jpg', companyUrl: 'https://www.purposejewelry.org/collections/earrings/products/daisy-earrings?sscid=11k8_owsri&' },
+      { id: 3, name: 'Jewel Garden', image: '/images/JewelGarden.jpg', companyUrl: 'https://www.lulasgarden.com/collections/original-gardens/products/jewel-garden?cjdata=MXxOfDB8WXww&cjevent=874c8b30b6f911ee83b100c30a82b82a&utm_source=Skimlinks&utm_medium=affiliate&utm_id=15299302&utm_campaign=Take+10%25+off+Eco-Friendly+Succulent+Graduation+Gifts&utm_content=100102749' },
+      { id: 4, name: 'Out of Print Read Your Socks Off Socks', image: '/images/ReadYourSocksOff.jpg', companyUrl: 'https://www.amazon.com/dp/B08832J76H?linkCode=ogi&tag=oprah-auto-20&ascsubtag=%5Bartid%7C10072.g.25223818%5Bsrc%7Cwww.google.com%5Bch%7C%5Blt%7C%5Bpid%7C772fde5a-eebf-4895-9223-d80a8c487960%5Bofsxid%7Cbutton_poc%5Bofsvid%7Clt_t%5Bofsxid%7Coft%5Bofsvid%7Con%5Bofsxid%7Csubx_vs_jam%5Bofsvid%7Cjam' },
     ];
+      
 
     const brands = [
       { id: 1, name: '', image: '/images/LastTote.jpeg' },
@@ -84,15 +84,15 @@ const HomePage = () => {
         <Container>
         <h2 className="featured-products-heading">Featured Products</h2>
         <Slider {...settings} className="custom-slider">
-          {products.map((product) => (
-            <div key={product.id}>
-              <Link to={`/products/${product.id}`}>
-                <img src={product.image} alt={product.name} style={{ width: '100%' }} />
-              </Link>
-              <p className="product-name">{product.name}</p>
-            </div>
-          ))}
-        </Slider>
+            {products.map((product) => (
+              <div key={product.id}>
+                <a href={product.companyUrl} target="_blank" rel="noopener noreferrer">
+                  <img src={product.image} alt={product.name} style={{ width: '100%' }} />
+                </a>
+                <p className="product-name">{product.name}</p>
+              </div>
+            ))}
+          </Slider>
       </Container>
 
       {/* Second Banner Image with Text Overlay */}
@@ -153,7 +153,7 @@ const HomePage = () => {
         >
           <h1>Have a product with a purpose?</h1>
           <p></p>
-          <p>We are always looking to feature new products on our website! If your company would like to be featured please feel free to reach out to us by filling out our <Link to="/contact" style={{ color: 'white' }}>contact us</Link> form. The more companies we partner with, the more awareness we can bring to these amazing products and initiatives!</p>
+          <p>We are always looking to feature new products on our website! If your company would like to be featured, please feel free to reach out to us by filling out our <Link to="/contact" style={{ color: 'white' }}>contact us</Link> form. The more companies we partner with, the more awareness we can bring to these amazing products and initiatives!</p>
         </div>
       </div>
       

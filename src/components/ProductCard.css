@@ -22,13 +22,17 @@
 
 .product-description {
   font-size: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 70px;
 }
 
 .product-price {
   font-size: 14px;
   font-weight: bolder;
-  margin-bottom: 45px;
+  /* margin-bottom: 45px; */
+  position:absolute;
+  bottom: 30px;
+  right: 95px;
+ 
 }
 
 .buy-button {

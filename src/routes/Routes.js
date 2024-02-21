@@ -31,6 +31,7 @@ const RoutesComponent = () => {
           <Route path="/ourmission" element={<OurMission />} />
           <Route path="/productadminpage" element={<ProductAdminPage />} />
           <Route path="/products/:productId" element={<ProductPage />} />{" "}
+          <Route path="/products/search/:searchTerm" element={<Products searchTerm="searchTerm" />} />{" "}
           {/* New route for individual product pages */}
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegistrationPage />} />
