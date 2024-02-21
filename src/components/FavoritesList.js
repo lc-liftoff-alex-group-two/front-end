@@ -11,36 +11,36 @@ const FavoritesList = ({ userId }) => {
   const navigate = useNavigate();
   const { getUser } = useAuth();
 
-  useEffect(() => {
-    const fetchFavorites = async () => {
-      try {
-        if (!Auth) {
-          navigate('/login');
-          return;
-        }
-        const user = await Auth.getUser()
-        const authHeader = {
-          Authorization: giveWiseApi.basicAuth(user),
-          "Content-Type": "application/json",
-        };
-
-        if(user){
-          const response = await fetch(`http://localhost:8080/favorites/display/${user.id}`, {
-            headers: authHeader,
-          });
-
-          if (response.ok) {
-            const data = await response.json();
-            setFavorites(data);
-          } else {
-            console.error('Failed to fetch favorites');
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching favorites:', error);
+  const fetchFavorites = async () => {
+    try {
+      if (!Auth) {
+        navigate('/login');
+        return;
       }
-    };
+      const user = await Auth.getUser()
+      const authHeader = {
+        Authorization: giveWiseApi.basicAuth(user),
+        "Content-Type": "application/json",
+      };
 
+      if(user){
+        const response = await fetch(`http://localhost:8080/favorites/display/${user.id}`, {
+          headers: authHeader,
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setFavorites(data);
+        } else {
+          console.error('Failed to fetch favorites');
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching favorites:', error);
+    }
+  };
+
+  useEffect(() => {
     fetchFavorites();
   }, [Auth, userId, navigate]);
 
@@ -53,17 +53,19 @@ const FavoritesList = ({ userId }) => {
       // Assuming you have the userId available in your component
       const userId = Auth.getUser().id;
   
-      await fetch(`http://localhost:8080/favorites/delete/${userId}/${productId}`, {
+      const response = await fetch(`http://localhost:8080/favorites/delete/${userId}/${productId}`, {
         method: "DELETE",
         headers: authHeader,
       });
-  
-      setFavorites((prevFavorites) =>
-        prevFavorites.filter(
-          (favorite) =>
-            favorite.userId !== userId || favorite.productId !== productId
-        )
-      );
+      if(response.ok) {
+        fetchFavorites();
+      }
+      // setFavorites((prevFavorites) =>
+      //   prevFavorites.filter(
+      //     (favorite) =>
+      //       favorite.userId !== userId || favorite.productId !== productId
+      //   )
+      // );
     } catch (error) {
       console.error("Error Deleting Favorite:", error);
       // Handle error - show a message to the user, or log it for further investigation
