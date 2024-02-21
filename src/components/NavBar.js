@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { BagHeartFill } from "react-bootstrap-icons";
 import { PersonCircle } from "react-bootstrap-icons";
 import Navbar from "react-bootstrap/Navbar";
@@ -11,9 +12,10 @@ import "./NavBar.css";
 import { useAuth } from "./context/AuthContext";
 
 function NavScrollExample() {
+  const [searchQuery, setSearchQuery] = useState("");
   const authContextValue = useAuth();
-  console.log("error:" + authContextValue);
   const { getUser, userIsAuthenticated, userLogout } = useAuth();
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const logout = () => {
     userLogout();
@@ -38,6 +40,27 @@ function NavScrollExample() {
       ? { display: "block" }
       : { display: "none" };
   };
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearchSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch(`http://localhost:8080/products/search/${searchQuery}`);
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch search results');
+      }
+      const data = await response.json();
+      // Redirect the user to the product page with filtered results
+      navigate('/products', { state: { searchResults: data } });
+    } catch (error) {
+      console.error('Error searching for products:', error);
+    }
+  };
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -72,37 +95,42 @@ function NavScrollExample() {
           </Nav>
 
           {/* Search bar */}
-          <Form className="d-flex">
+          <Form className="d-flex" onSubmit={handleSearchSubmit}>
             <Form.Control
               type="search"
               placeholder="Search"
               className="px-2 search"
               aria-label="Search"
+              value={searchQuery}
+              onChange={handleSearchChange}
             />
-            <Button className="search-btn">Search</Button>
+            <Button type="submit" className="search-btn">
+              Search
+            </Button>
           </Form>
-        </Navbar.Collapse>
-        <Nav className="ml-auto">
+
+          <Nav className="ml-auto">
+            <Nav.Link
+              as={Link}
+              style={enterMenuStyle()}
+              to="/register"
+              className="larger-icon"
+            >
+              <PersonCircle />
+            </Nav.Link>
+          </Nav>
+          <Nav.Link className="header" style={logoutMenuStyle()}>
+            {`${getUserName()}`}
+          </Nav.Link>
           <Nav.Link
             as={Link}
-            style={enterMenuStyle()}
-            to="/register"
-            className="larger-icon"
+            style={logoutMenuStyle()}
+            onClick={logout}
+            to="/home"
           >
-            <PersonCircle />
+            LOGOUT
           </Nav.Link>
-        </Nav>
-        <Nav.Link header style={logoutMenuStyle()}>
-          {`${getUserName()}`}
-        </Nav.Link>
-        <Nav.Link
-          as={Link}
-          style={logoutMenuStyle()}
-          onClick={logout}
-          to="/home"
-        >
-          LOGOUT
-        </Nav.Link>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );

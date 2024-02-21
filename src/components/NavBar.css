@@ -52,4 +52,9 @@ body {
     width: 1.5em; /* Adjust the size as needed */
     height: 1.5em; /* Adjust the size as needed */
   }
+  .header {
+    font-weight: bold;
+  
+  }
+  
 
