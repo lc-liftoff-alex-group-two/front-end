@@ -50,7 +50,7 @@ const LoginForm = () => {
   };
 
   if (isLoggedIn) {
-    navigate("/products");
+    navigate("/home");
   }
   return (
     <body id="register_body">
