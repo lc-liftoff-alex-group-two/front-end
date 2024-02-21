@@ -47,6 +47,7 @@ const Footer = () => {
           alert(`Internal Error`);
         }
       });
+      setEmailData({ email: "" });
     }
   };
   return (
@@ -127,6 +128,7 @@ const Footer = () => {
                   placeholder="Enter your email"
                   className="email-input"
                   name="email"
+                  value={email.email}
                   onChange={handleChange}
                 />
                 <button
