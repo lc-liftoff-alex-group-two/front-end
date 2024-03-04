@@ -19,6 +19,7 @@ body {
     color: black;
     text-transform: uppercase;
     font-family: 'Julius Sans One';
+    font-size: 18px;
     /* font-weight: bold; */
   }
   .nav-link:hover {

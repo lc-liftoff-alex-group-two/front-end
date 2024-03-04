@@ -163,7 +163,7 @@ const HomePage = () => {
         <img
           src="/images/help2.png"
           alt="Another Banner Image"
-          style={{ width: '100%', maxHeight: '1100px', objectFit: 'cover' }}
+          style={{ width: '100%', maxHeight: '1400px', objectFit: 'cover' }}
         />
         <div
           style={{
